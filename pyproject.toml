@@ -1,0 +1,11 @@
+[project]
+name = "first-agent-template"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "ddgs>=9.16.0",
+    "huggingface-hub>=2.0.0",
+    "smolagents>=1.26.0",
+]
