@@ -1,0 +1,21 @@
+from langfuse import get_client
+from openinference.instrumentation.smolagents import SmolagentsInstrumentor
+from smolagents import CodeAgent, InferenceClientModel
+
+import os
+
+LANGFUSE_SECRET_KEY = os.getenv("LANGFUSE_SECRET_KEY")
+LANGFUSE_PUBLIC_KEY = os.getenv("LANGFUSE_PUBLIC_KEY")
+LANGFUSE_BASE_URL = os.getenv("LANGFUSE_BASE_URL")
+
+langfuse_client = get_client()
+
+if langfuse_client.auth_check():
+    print("Langfuse client is authenticated successfully.")
+else :
+    print("Langfuse client authentication failed. Please check your keys and try again.")
+
+SmolagentsInstrumentor().instrument()
+
+alfred_agent = CodeAgent.from_hub('sergiopaniego/AlfredAgent', trust_remote_code=True, model=InferenceClientModel(model_id="Qwen/Qwen2.5-Coder-32B-Instruct"))
+alfred_agent.run("Donne-moi la meilleure playlist pour une fête au manoir des Wayne. L'idée de la fête est un thème 'mascarade de méchants'")  
