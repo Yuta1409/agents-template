@@ -1,12 +1,9 @@
 from langfuse import get_client
 from openinference.instrumentation.smolagents import SmolagentsInstrumentor
 from smolagents import CodeAgent, InferenceClientModel
+from dotenv import load_dotenv
 
-import os
-
-LANGFUSE_SECRET_KEY = os.getenv("LANGFUSE_SECRET_KEY")
-LANGFUSE_PUBLIC_KEY = os.getenv("LANGFUSE_PUBLIC_KEY")
-LANGFUSE_BASE_URL = os.getenv("LANGFUSE_BASE_URL")
+load_dotenv()
 
 langfuse_client = get_client()
 
